@@ -127,27 +127,25 @@ class TestSauceDemo(BaseFunctions):
         self.press_button(InventoryPage.A_TO_Z_OPTION)
         item_names = self.assign_elements(InventoryPage.INVENTORY_ITEM_NAME)
         for i in range(0, len(item_names)-1):
-            assert item_names[i].get_attribute('innerText') < item_names[i+1].get_attribute('innerText')
+            assert item_names[i].text < item_names[i+1].text
 
         # Sort products by A to Z
         self.press_button(InventoryPage.SORT_CONTAINER)
         self.press_button(InventoryPage.Z_TO_A_OPTION)
         item_names = self.assign_elements(InventoryPage.INVENTORY_ITEM_NAME)
         for i in range(0, len(item_names)-1):
-            assert item_names[i].get_attribute('innerText') > item_names[i+1].get_attribute('innerText')
+            assert item_names[i].text > item_names[i+1].text
 
         # Sort products by low to high
         self.press_button(InventoryPage.SORT_CONTAINER)
         self.press_button(InventoryPage.LOW_TO_HIGH_PRICE_OPTION)
         item_prices = self.assign_elements(InventoryPage.INVENTORY_ITEM_PRICE)
         for i in range(0, len(item_prices)-1):
-            assert float(item_prices[i].get_attribute('innerText')[1:])\
-                   <= float(item_prices[i+1].get_attribute('innerText')[1:])
+            assert float(item_prices[i].text[1:]) <= float(item_prices[i+1].text[1:])
 
         # Sort products by high to low
         self.press_button(InventoryPage.SORT_CONTAINER)
         self.press_button(InventoryPage.HIGH_TO_LOW_PRICE_OPTION)
         item_prices = self.assign_elements(InventoryPage.INVENTORY_ITEM_PRICE)
         for i in range(0, len(item_prices)-1):
-            assert float(item_prices[i].get_attribute('innerText')[1:])\
-                   >= float(item_prices[i+1].get_attribute('innerText')[1:])
+            assert float(item_prices[i].text[1:]) >= float(item_prices[i+1].text[1:])

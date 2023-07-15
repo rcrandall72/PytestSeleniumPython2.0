@@ -33,6 +33,6 @@ Cannot log in with locked user:
   - Verifies a user can sort products in the list from A to Z, Z to A, and by Price (high to low & low to high)
 
 # **Installation:**
-- Install pip
+- Install pip and python3
 - Run `pip install -r requirements.txt`
 - Run as command line `pytest --browser "chrome"` (or firefox/safari)
