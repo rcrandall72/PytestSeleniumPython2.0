@@ -26,6 +26,7 @@ class BaseFunctions:
         def wrapper(*args, **kwargs):
             # Log method name and parameters
             logging.debug(f"{func.__name__}({args}, {kwargs})")
+            return func(*args, **kwargs)
         return wrapper
 
     @log
