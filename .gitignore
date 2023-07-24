@@ -2,3 +2,4 @@
 report.json
 report.html
 *.log
+*.pyc
