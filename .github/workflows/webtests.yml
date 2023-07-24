@@ -28,4 +28,4 @@ jobs:
           
       - name: Generate Report
         run: |
-          echo $(python3 .\generate_report.py)
+          echo $(python3 generate_report.py)
