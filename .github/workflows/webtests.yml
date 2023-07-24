@@ -1,0 +1,31 @@
+name: Run Smoke Tests
+
+on:
+  workflow_dispatch
+  
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
+
+      - name: Install pip dependencies
+        run: |
+          pip install -r requirements.txt
+          
+      - name: Run Tests
+        run: |
+          pytest || true
+          
+      - name: Generate Report
+        run: |
+          echo $(python3 .\generate_report.py)
