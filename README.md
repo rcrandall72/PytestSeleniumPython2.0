@@ -6,6 +6,8 @@ Test Summary:
 1 passed, 0 failed, 0 skipped
 20.36 seconds
 
+There is a .yml file which will run the tests automatically on a ubuntu environment. A report is printed (shown above), but it not currently sent anywhere (ideally to Slack or email).
+
 Tests are done on https://www.saucedemo.com/
 
 Two test suites exist:
