@@ -82,5 +82,5 @@ class FooterPage:
     SOCIAL_FACEBOOK = ["li", "class", "social_facebook"]
     FACEBOOK_URL = "https://www.facebook.com/saucelabs"
     SOCIAL_LINKEDIN = ["li", "class", "social_linkedin"]
-    LINKEDIN_URL = "https://www.linkedin.com/company/sauce-labs/"
-
+    LINKEDIN_URL = "https://www.linkedin.com/"
+    SAUCE_LABS = "sauce-labs"

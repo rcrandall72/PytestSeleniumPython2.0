@@ -1,6 +1,7 @@
 from pytest import mark
 from base_functions import BaseFunctions
 from common_strings import *
+from log_functions import log_test
 
 
 @mark.regression
@@ -8,6 +9,7 @@ from common_strings import *
 class TestSauceDemo(BaseFunctions):
 
     @mark.smoke
+    @log_test
     def test_login_logout(self):
         """
         Tests a user can log in and out of the app
@@ -23,6 +25,7 @@ class TestSauceDemo(BaseFunctions):
         assert self.check_for_element(LoginPage.LOGIN_BUTTON)
         assert self.driver.current_url == URLs.SAUCE_DEMO
 
+    @log_test
     def test_cannot_login_with_locked_user(self):
         """
         Tests a user cannot log in with a locked user
@@ -34,6 +37,7 @@ class TestSauceDemo(BaseFunctions):
         assert self.check_for_element(LoginPage.ERROR_MESSAGE)
         assert self.assign_element(LoginPage.ERROR_MESSAGE).text == LoginPage.LOCKED_OUT_ERROR_MESSAGE
 
+    @log_test
     def test_user_signing_credential_errors(self):
         """
         Tests a user must provide good credentials in order to log in
@@ -57,6 +61,7 @@ class TestSauceDemo(BaseFunctions):
         assert self.assign_element(LoginPage.ERROR_MESSAGE).text == LoginPage.USERNAME_PASSWORD_MISMATCH_MESSAGE
 
     @mark.smoke
+    @log_test
     def test_buy_item(self):
         """
         Tests a user can add an item to the cart and buy it
@@ -83,6 +88,7 @@ class TestSauceDemo(BaseFunctions):
         # Assert completion
         assert self.check_for_element(CartPage.CONFIRMATION_CONTAINER)
         
+    @log_test
     def test_social_media_links(self):
         """
         Tests the social media links route correctly
@@ -113,8 +119,10 @@ class TestSauceDemo(BaseFunctions):
         self.driver.switch_to.window(self.driver.window_handles[0])
         self.press_button(FooterPage.SOCIAL_LINKEDIN, wait=True)
         check_window_handle(FooterPage.LINKEDIN_URL)
-        assert FooterPage.LINKEDIN_URL in self.driver.current_url
+        assert FooterPage.LINKEDIN_URL in self.driver.current_url  # Stuck in auth wall
+        assert FooterPage.SAUCE_LABS in self.driver.current_url
 
+    @log_test
     def test_sort_products(self):
         """
         Verifies products can be sorted in a certain order

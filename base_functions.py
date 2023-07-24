@@ -1,10 +1,10 @@
 import string
 import random
 from time import sleep
-import logging
 from pytest import mark
 
 from common_strings import *
+from log_functions import log_method_calls
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -15,21 +15,7 @@ from selenium.common.exceptions import TimeoutException
 @mark.usefixtures("browser")
 class BaseFunctions:
 
-    logging.basicConfig(
-        filename="testrun.log",
-        level=logging.DEBUG,
-        format='%(name)s - %(levelname)s - %(message)s'
-    )
-
-    @staticmethod
-    def log(func):
-        def wrapper(*args, **kwargs):
-            # Log method name and parameters
-            logging.debug(f"{func.__name__}({args}, {kwargs})")
-            return func(*args, **kwargs)
-        return wrapper
-
-    @log
+    @log_method_calls
     def sign_in(self, email):
         """
         Signs the user in based on the email passed in
@@ -40,7 +26,7 @@ class BaseFunctions:
         self.send_keys(LoginPage.PASSWORD_FIELD, UserData.PASSWORD)
         self.press_button(LoginPage.LOGIN_BUTTON)
 
-    @log
+    @log_method_calls
     def press_button(self, button_id, button_type=By.ID, iteration=0,
                      text="", timeout=30, child_path="", wait=False) -> str:
         """
@@ -79,7 +65,7 @@ class BaseFunctions:
                 sleep(5)
             return text
 
-    @log
+    @log_method_calls
     def send_keys(self, field_id, text, field_type=By.ID, iteration=0, timeout=30, child_path="") -> str:
         """
         Presses the button based on the id passed in
@@ -106,7 +92,7 @@ class BaseFunctions:
             field[iteration].send_keys(text)
             return text
 
-    @log
+    @log_method_calls
     def check_for_element(self, element_id, element_type=By.ID, child_path="", timeout=5, text="") -> bool:
         """
 
@@ -136,7 +122,7 @@ class BaseFunctions:
         except TimeoutException:
             return False
 
-    @log
+    @log_method_calls
     def assign_element(self, element_id, element_type=By.ID, child_path="", timeout=5, text="", iteration=0):
         """
         Assigns the element based on the id and type given
@@ -170,7 +156,7 @@ class BaseFunctions:
             else:  # Find by iteration
                 return elements[iteration]
 
-    @log
+    @log_method_calls
     def assign_elements(self, element_id, element_type=By.ID, child_path="", timeout=5, text=""):
         """
         Assigns the elements based on the id and type given
@@ -204,7 +190,7 @@ class BaseFunctions:
                 return elements
 
     @staticmethod
-    @log
+    @log_method_calls
     def get_random_string(length=5) -> str:
         """
         Returns a random string with the length provided
