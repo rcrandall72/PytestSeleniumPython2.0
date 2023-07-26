@@ -28,7 +28,7 @@ jobs:
           
       - name: Slack Results With Report
         run: |
-          echo $(python3 generate_report.py)
+          echo $(python3 slack_upload.py)
         env:
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
           
