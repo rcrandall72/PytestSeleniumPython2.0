@@ -6,7 +6,9 @@ Test Summary:
 1 passed, 0 failed, 0 skipped
 20.36 seconds
 
-There is a .yml file which will run the tests automatically on a ubuntu environment. A report is printed (shown above), but it not currently sent anywhere (ideally to Slack or email).
+There is a .yml file which will run the tests automatically on a ubuntu environment. The following report is sent to slack.
+![slack example](https://github.com/rcrandall72/PytestSeleniumPython2.0/assets/78037488/8c998205-9e6c-44a7-826f-4d9dd70ee92d)
+
 
 Tests are done on https://www.saucedemo.com/
 
