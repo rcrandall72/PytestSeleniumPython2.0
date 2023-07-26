@@ -10,7 +10,7 @@ jobs:
       run:
         shell: bash
     steps:
-      - name: Checkout repo
+      - name: Checkout Repo
         uses: actions/checkout@v2
         
       - name: Setup Python
@@ -26,8 +26,9 @@ jobs:
         run: |
           pytest || true
           
-      - name: Generate Report
+      - name: Slack Results With Report
         run: |
           echo $(python3 generate_report.py)
         env:
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          
