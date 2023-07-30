@@ -33,3 +33,11 @@ def log_test(func):
         return func(*args, **kwargs)
     wrapper.__name__ = func.__name__  # Preserve the original method name
     return wrapper
+
+
+def log_step(func):
+    def wrapper(*args, **kwargs):
+        logger.debug(f"\n\t- Test Step: {func.__name__}")
+        return func(*args, **kwargs)
+    wrapper.__name__ = func.__name__
+    return wrapper
