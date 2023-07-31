@@ -5,7 +5,6 @@ from log_functions import log_test
 
 
 @mark.regression
-@mark.usefixtures("browser")
 class TestSauceDemo(BaseFunctions):
 
     @mark.smoke
